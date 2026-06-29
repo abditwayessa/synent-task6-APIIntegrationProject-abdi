@@ -4,8 +4,6 @@ A GitHub profile explorer built with vanilla JavaScript, HTML, and CSS. Search a
 
 ## Project Demonstration
 
-> Replace this with your actual video link or embed.
-
 **Demonstration video:**
 
 ```md

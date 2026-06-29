@@ -39,7 +39,7 @@ async function fetchProfile(username) {
     document.getElementById("loadingText").textContent =
       `Loading repositories...`;
     const reposRes = await fetch(
-      `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=12`,
+      `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=14`,
     );
     const repos = reposRes.ok ? await reposRes.json() : [];
 
