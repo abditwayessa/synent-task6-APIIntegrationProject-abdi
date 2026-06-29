@@ -1,0 +1,353 @@
+:root {
+  --bg: #03060a;
+  --panel: rgba(22, 27, 34, 0.7);
+  --border: rgba(48, 54, 61, 0.5);
+  --text: #f0f6fc;
+  --text-dim: #8b949e;
+  --green: #3fb950;
+  --red: #f85149;
+  --blue: #58a6ff;
+  --amber: #d29922;
+  --accent: #1f6feb;
+  --glass: rgba(13, 17, 23, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(31, 111, 235, 0.15), transparent 40%),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(63, 185, 80, 0.1),
+      transparent 40%
+    );
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Full Screen Layout Grid */
+.app-container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Header / Search Area */
+header {
+  grid-column: 1 / -1;
+  padding: 20px 40px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.logo {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo span {
+  color: var(--blue);
+}
+
+.search-box {
+  flex: 1;
+  max-width: 600px;
+  position: relative;
+  margin: 0 40px;
+}
+
+#fetchForm {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+}
+
+#fetchForm:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+}
+
+.prompt-prefix {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--green);
+  padding-left: 10px;
+  font-size: 14px;
+  user-select: none;
+}
+
+#usernameInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  padding: 10px;
+}
+
+#usernameInput:focus {
+  outline: none;
+}
+
+.runBtn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.runBtn:hover {
+  filter: brightness(1.2);
+}
+
+/* Sidebar - Profile Info */
+.sidebar {
+  background: var(--glass);
+  border-right: 1px solid var(--border);
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Main Content - Repositories */
+main {
+  padding: 40px;
+  overflow-y: auto;
+  background: rgba(13, 17, 23, 0.3);
+}
+
+/* Components */
+.avatar-container {
+  width: 160px;
+  height: 160px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-identity h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+.user-identity p {
+  margin: 5px 0;
+  color: var(--text-dim);
+  font-family: "JetBrains Mono";
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.stat-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+  font-family: "JetBrains Mono";
+}
+
+.bio-box {
+  line-height: 1.6;
+  color: var(--text-dim);
+  font-size: 14px;
+  padding: 20px;
+  background: rgba(88, 166, 255, 0.05);
+  border-radius: 12px;
+  border-left: 4px solid var(--blue);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.repo-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 25px;
+  border-radius: 16px;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+}
+
+.repo-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+  background: rgba(31, 111, 235, 0.05);
+}
+
+.repo-name {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+.repo-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
+  font-family: "JetBrains Mono";
+}
+
+.lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/* States */
+.state {
+  display: none !important;
+  width: 100%;
+  height: 100%;
+}
+.state.active {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.welcome-state,
+.loading-state,
+.error-state {
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: var(--blue);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    overflow-y: auto;
+    height: auto;
+  }
+  header {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .search-box {
+    margin: 0;
+    width: 100%;
+  }
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    height: auto;
+  }
+}
