@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitFetch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="app-container">
+    <header>
+      <div class="logo">GIT<span>FETCH</span></div>
+      <div class="search-box">
+        <form id="fetchForm">
+          <span class="prompt-prefix">/</span>
+          <input type="text" id="usernameInput" placeholder="search github user..." autocomplete="off"
+            spellcheck="false">
+          <button type="submit" class="runBtn">Search</button>
+        </form>
+      </div>
+      <div style="width: 100px;"></div>
+    </header>
+
+    <div id="emptyState" class="state active welcome-state">
+      <h2 style="font-size: 40px; margin-bottom: 10px;">Explore GitHub Profiles</h2>
+      <p style="color: var(--text-dim); font-size: 18px;">Enter a username above to start exploring<span
+          class="cursor"></span></p>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="state loading-state">
+      <div class="loading-spinner"></div>
+      <p id="loadingText" style="font-family: 'JetBrains Mono';">Fetching profile data...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="state error-state">
+      <h2 style="color: var(--red); font-size: 30px;">Error</h2>
+      <p id="errorLine" style="font-family: 'JetBrains Mono'; margin: 10px 0;"></p>
+      <p id="errorHint" style="color: var(--text-dim);"></p>
+    </div>
+
+    <!-- Result State (Hidden by default) -->
+    <aside id="sidebar" class="sidebar state">
+      <div class="avatar-container">
+        <img id="avatar" class="avatar" src="" alt="">
+      </div>
+      <div class="user-identity">
+        <h1 id="name"></h1>
+        <p id="login"></p>
+      </div>
+      <div class="bio-box" id="bio"></div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Repos</div>
+          <div class="stat-value" id="repoCount"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Followers</div>
+          <div class="stat-value" id="followerCount"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Following</div>
+          <div class="stat-value" id="followingCount"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Location</div>
+          <div class="stat-value" id="location" style="font-size: 14px;"></div>
+        </div>
+      </div>
+      <a id="profileLink" href="#" target="_blank" class="runBtn"
+        style="text-align: center; text-decoration: none;">View GitHub Profile</a>
+    </aside>
+
+    <main id="mainContent" class="state">
+      <h2 class="section-title">Recently Updated Repositories</h2>
+      <div id="repoList" class="repo-grid"></div>
+    </main>
+  </div>
+  <script src="script.js" defer></script>
+</body>
+
+</html>
